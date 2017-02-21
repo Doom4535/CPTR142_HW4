@@ -11,6 +11,9 @@
 #include <string>
 #include <vector>
 
+// bad practice
+//int maxCourseLoad = 8;
+
 struct studentName{
 	std::string Lname;
 	std::string Fname;

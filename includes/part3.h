@@ -14,7 +14,8 @@ struct StudentBody{
 	Student *StudentList;
 	int studentCount;
 
-	StudentBody();
+	//StudentBody(int size);
+	StudentBody(void);
 };
 
 //! General part 3 routine

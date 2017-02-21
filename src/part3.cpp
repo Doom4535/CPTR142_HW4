@@ -8,7 +8,6 @@
 #include <iostream>
 #include <string>
 #include "part3.h"
-#include "student.h"
 
 //struct StudentBody{
 //	Student *StudentList;
@@ -18,14 +17,16 @@
 //! Student Body structure
 // Using a pointer to array of pointers could improve
 // system performance (particularly for deletions)
-StudentBody::StudentBody(){
+//StudentBody::StudentBody(int size){
+StudentBody::StudentBody(void){
 	//Student *StudentList = nullptr;
 	//StudentList = *Student;
 	//StudentList = new Student[0];
 	//Student A;
 	//StudentList = A;
 	StudentList = nullptr;
-	StudentList = new Student[0];
+	//StudentList = new Student[size];
+	StudentList = new Student[400];
 	studentCount = 0;
 }
 
@@ -34,8 +35,22 @@ void part3(void){
 	//Student *StudentBody = nullptr;
 	//StudentBody = new Student[];
 	//MasterControl(StudentBody);
+
+	int userInput;
+	//int maxCourseLoad;
+	std::cout << "Please enter the maximum size of your student body: ";
+	std::cin >> userInput;
+	std::cout << std::endl;
+	//std::cout << "Please enter the maximum course load for a student: ";
+	//std::cin >> maxCourseLoad;
+	//std::cout << std::endl;
+
+	//StudentBody StudentBod(userInput);
+	//addNewStudent(StudentBod);
+	//MasterControl(StudentBod);
+
 	StudentBody *StudentBodPTR;
-	StudentBodPTR = new StudentBody[1];
+	StudentBodPTR = new StudentBody[userInput];
 	addNewStudent(StudentBodPTR);
 	MasterControl(StudentBodPTR);
 
@@ -51,11 +66,16 @@ void addNewStudent(StudentBody *StudentBod){
 	while(loop){
 		std::cout << "Please enter the last name of the student: ";
 		std::cin >> LastName;
+		//std::cin.ignore();
 		std::cout << "Please enter the first name of the student: ";
 		std::cin >> FirstName;
+		//std::cin.ignore();
+		//StudentBod.StudentList[StudentBod.studentCount].setName(LastName, FirstName);
 		//StudentBod.StudentList[StudentBod.studentCount].Student(LastName, FirstName);
+		//StudentBod.StudentList[StudentBod.studentCount].setName(FirstName, LastName);
 		StudentBod->StudentList[StudentBod->studentCount].setName(LastName, FirstName);
 		//StudentBod.StudentList[StudentBod.studentCount].setName(LastName, FirstName);
+		//addStudentClasses(StudentBod, StudentBod.studentCount);
 		addStudentClasses(StudentBod, StudentBod->studentCount);
 		std::cout << "OK, we will now verify that the following enrollment is correct: " << std::endl;
 		//StudentBod.StudentList[StudentBod.studentCount].displayEnrollment();
@@ -67,10 +87,10 @@ void addNewStudent(StudentBody *StudentBod){
 			std::cout << "OK, we are going to go back and re-enter the student information" << std::endl;
 		}
 		else{
+			//StudentBod.studentCount++;
+			StudentBod->studentCount++;
 			loop = false;
 		}
-		//StudentBod.studentCount++;
-		StudentBod->studentCount++;
 	}
 }
 
@@ -100,7 +120,6 @@ void removeStudent(StudentBody *StudentBod){
 				found_student = true;
 				break;	// We found them, no need to keep looking
 			}
-			found_student = false;
 		}
 		if(found_student == true){
 			std::cout << "We found a student with the ID number: " << studentID << std::endl;
@@ -126,8 +145,8 @@ void removeStudent(StudentBody *StudentBod){
 					}
 					else{
 						//StudentBod.StudentList[j].~Student(); // We are now shrinking the total student count
-						//StudentBod.studentCount--;
 						StudentBod->StudentList[j].~Student(); // We are now shrinking the total student count
+						//StudentBod.studentCount--;
 						StudentBod->studentCount--;
 					}
 				}

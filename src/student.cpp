@@ -10,7 +10,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "student.h"
 
+// Bad practice, stuck here...
+int maxCourseLoad = 8;
 
 int Student::IDpool = 1; // Starting ID value for the 1st sensor should be '1'
 
@@ -19,7 +22,8 @@ Student::Student(void){
 	IDpool++;
 	numClasses = 0;
 	ClassList = nullptr;
-	ClassList = new std::string[];
+	ClassList = new std::string[maxCourseLoad];
+	//ClassList = new std::vector<std::string>;
 	//ClassList;
 
 }
@@ -121,7 +125,7 @@ Student& Student::operator=(const Student& rtSide){
 		Name.Fname = rtSide.Name.Fname;
 		numClasses = rtSide.numClasses;
 		delete [] ClassList;
-		//ClassList = new std::string[numClasses];
+		ClassList = new std::string[numClasses];
 		//ClassList = new std::vector;
 		for(int i = 0; i < numClasses; i++){
 			ClassList[i] = rtSide.ClassList[i];
