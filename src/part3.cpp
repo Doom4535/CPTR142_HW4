@@ -88,7 +88,9 @@ void addNewStudent(StudentBody *StudentBod){
 		}
 		else{
 			//StudentBod.studentCount++;
+			std::cout << "OK, we have added the new student" << std::endl;
 			StudentBod->studentCount++;
+			std::cout <<StudentBod->studentCount <<std::endl;
 			loop = false;
 		}
 	}
@@ -139,7 +141,7 @@ void removeStudent(StudentBody *StudentBod){
 					// This would benefit from usig a pointer to each element instead of
 					// a pointer to the array
 					//if(location < StudentBod.studentCount){
-					if(location < StudentBod->studentCount){
+					if(location < (StudentBod->studentCount -1)){
 						//StudentBod.StudentList[j] = StudentBod.StudentList[j + 1];
 						StudentBod->StudentList[j] = StudentBod->StudentList[j + 1];
 					}
@@ -219,7 +221,7 @@ void MasterControl(StudentBody *StudentBod){
 	}
 }
 
-void addStudentClasses(StudentBody *StudentBod, const int &student){
+void addStudentClasses(StudentBody *StudentBod, int &student){
 	std::cout << "We will enter the classes one at a time" << std::endl;
 	std::cout << "Please entry names without spaces" << std::endl;
 	bool loop = true;
@@ -228,7 +230,8 @@ void addStudentClasses(StudentBody *StudentBod, const int &student){
 		std::cout << "Please enter the class name: ";
 		std::cin >> input;
 		//StudentBod.StudentList->addClass(input);
-		StudentBod->StudentList->addClass(input);
+		//StudentBod->StudentList->addClass(input);
+		StudentBod->StudentList[student].addClass(input);
 		std::cout << "Would you like to enter another class? (y/N): ";
 		std::cin >> input;
 		if((input == "y") || (input == "Y") || (input == "Yes") || (input == "YES") || (input == "yes")){

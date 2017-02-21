@@ -1,8 +1,8 @@
-TARGET_EXEC := CPTR142_HW4.exe
+TARGET_EXEC := UAV-Sensor-Framework.exe
 
 CC = g++
-#CPPFLAGS := -std=c++11
-CPPFLAGS := -std=c++0x
+CPPFLAGS := -std=c++11
+
 
 BUILD_DIR := ./build
 SRC_DIR := ../src
@@ -10,9 +10,11 @@ INC_DIR := -I../includes \
 			-I.
 		
 OBJ_DIR := ./obj
-#LIB_DIR := ../lib
+LIB_DIR := ../lib
 
-LIBS :=
+#LIBS := -lboost_iostreams \
+#		-lboost_system \
+#		-lboost_filesystem
 
 BUILD_TARGET := $(BUILD_DIR)/$(TARGET_EXEC)
 #INC_FLAGS := $(addprefix -I,$(INC_DIRS))
@@ -25,13 +27,13 @@ HEADERS = $(wildcard *.h)
 # see: http://stackoverflow.com/questions/19774795/clang-warning-l-linker-input-unused
 
 $(OBJ_DIR)/%.o: %.cpp $(HEADERS)
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p ./obj
 	$(CC) -c -o $@ $< $(CPPFLAGS) $(INC_DIR) $(LIBS)
 
 all: $(BUILD_TARGET)
 	
 $(BUILD_TARGET): $(OBJECTS)
-	@mkdir -p $(BUILD_DIR)
+	@mkdir -p ./build
 	$(CC) -o $@ $^ $(CPPFLAGS) $(INC_DIR) $(LIBS)
 	
 .PHONY: clean

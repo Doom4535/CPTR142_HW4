@@ -44,8 +44,10 @@ void printAllStudents(const StudentBody *StudentBod);
 //! Sort of homescreen for the program
 void MasterControl(StudentBody *StudentBody);
 
-void addStudentClasses(StudentBody *StudentBod, const int &student);
+//! enrolls the student in more classes
+void addStudentClasses(StudentBody *StudentBod, int &student);
 
+//! removes a student
 void removeStudent(StudentBody *StudentBod);
 
 #endif /* PART3_FUNCTIONS_H_ */
