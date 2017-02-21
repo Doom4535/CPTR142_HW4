@@ -12,6 +12,7 @@
 
 #include "part1.h"
 #include "part2.h"
+#include "part3.h"
 // try to remove code calls from part 1
 
 
@@ -20,7 +21,8 @@
 int main(void) {
 	puts("!!!Hello World!!!");
 
-	part1();
-	part2();
+	//part1();
+	//part2();
+	part3();
 	return EXIT_SUCCESS;
 }

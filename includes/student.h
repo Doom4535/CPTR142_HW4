@@ -10,20 +10,28 @@
 
 #include <string>
 
+struct studentName{
+	std::string Lname;
+	std::string Fname;
+};
+
 class Student{
 	private:
 		static int IDpool;
 		int ID = 0;	//! Defaulting to '0', if this value occurs the sensor has had some initialization issues
-		std::string Lname;
-		std::string Fname;
+		//std::string Lname;
+		//std::string Fname;
+		studentName Name;
 		int numClasses = 0; // Number of enrolled classes
 		std::string *ClassList = nullptr;
 
 	public:
-		Student(std::string Last_name, std::string First_name);
+		Student(void);
+		//Student(std::string Last_name, std::string First_name);
 		void setName(std::string Last_name, std::string First_name);
-		std::string getName(void);
+		studentName getName(void);
 		int getNumClasses(void);
+		int getID(void);
 		// something to list more about courses
 		void addClass(std::string className);
 		void dropClass(std::string className);
@@ -35,8 +43,6 @@ class Student{
 
 
 };
-
-int Student::IDpool = 1; // Starting ID value for the 1st sensor should be '1'
 
 
 #endif /* STUDENT_H_ */

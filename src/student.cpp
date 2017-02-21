@@ -11,6 +11,16 @@
 #include <string>
 
 
+int Student::IDpool = 1; // Starting ID value for the 1st sensor should be '1'
+
+Student::Student(void){
+	ID = IDpool;
+	IDpool++;
+	numClasses = 0;
+	ClassList = new std::string;
+}
+
+/*
 Student::Student(std::string Last_name, std::string First_name){
 	ID = IDpool;
 	IDpool++;
@@ -19,15 +29,21 @@ Student::Student(std::string Last_name, std::string First_name){
 	numClasses = 0;
 	ClassList = new std::string;
 }
+*/
 void Student::setName(std::string Last_name, std::string First_name){
-	Lname = Last_name;
-	Fname = First_name;
+	//Lname = Last_name;
+	//Fname = First_name;
+	Name.Lname = Last_name;
+	Name.Fname = First_name;
 }
-std::string Student::getName(void){
-	return(Lname, Fname);
+studentName Student::getName(void){
+	return(Name);
 }
 int Student::getNumClasses(void){
 	return(numClasses);
+}
+int Student::getID(void){
+	return(ID);
 }
 // something to list more about courses
 void Student::addClass(std::string className){
@@ -76,7 +92,8 @@ void Student::dropClass(std::string className){
 }
 
 void Student::displayEnrollment(){
-	std::cout << Lname << ", " << Fname << " is enrolled in " << numClasses << " classes" << std::endl;
+	std::cout << "Student ID number: " << ID << std::endl;
+	std::cout << Name.Lname << ", " << Name.Fname << " is enrolled in " << numClasses << " classes" << std::endl;
 	std::cout << "The following are the classes: " << std::endl;
 	for(int i = 0; i < numClasses; i++){
 		std::cout << ClassList[i] << std::endl;
@@ -96,8 +113,8 @@ Student& Student::operator=(const Student& rtSide){
 	}
 	else{
 		ID = rtSide.ID;
-		Lname = rtSide.Lname;
-		Fname = rtSide.Fname;
+		Name.Lname = rtSide.Name.Lname;
+		Name.Fname = rtSide.Name.Fname;
 		numClasses = rtSide.numClasses;
 		delete [] ClassList;
 		ClassList = new std::string[numClasses];

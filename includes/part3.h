@@ -22,7 +22,7 @@ void part3(void);
 
 //! Adding in new student, console entry is managed in function,
 // therefore, only a reference to the student body is needed
-void addNewStudent(StudentBody &StudentBod);
+void addNewStudent(StudentBody *StudentBod);
 
 //! \brief Removing a student
 //
@@ -38,13 +38,13 @@ void removeStudent(Student *StudentBody);
 // that provides manipulatable data might be useful to
 // add later on, once the type of data to manipulate is
 // determined
-void printAllStudents(const Student *PTRtoStudents);
+void printAllStudents(const StudentBody *StudentBod);
 
 //! Sort of homescreen for the program
-void MasterControl(Student *StudentBody);
+void MasterControl(StudentBody *StudentBody);
 
-void addStudentClasses(StudentBody &StudentBod, const int &student);
+void addStudentClasses(StudentBody *StudentBod, const int &student);
 
-
+void removeStudent(StudentBody *StudentBod);
 
 #endif /* PART3_FUNCTIONS_H_ */
