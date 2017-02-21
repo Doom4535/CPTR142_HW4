@@ -11,18 +11,20 @@
 #include <string>
 
 
-Student::Student(std::string Student_name){
+Student::Student(std::string Last_name, std::string First_name){
 	ID = IDpool;
 	IDpool++;
-	name = Student_name;
+	Lname = Last_name;
+	Fname = First_name;
 	numClasses = 0;
 	ClassList = new std::string;
 }
-void Student::setName(std::string n){
-	name = n;
+void Student::setName(std::string Last_name, std::string First_name){
+	Lname = Last_name;
+	Fname = First_name;
 }
 std::string Student::getName(void){
-	return(name);
+	return(Lname, Fname);
 }
 int Student::getNumClasses(void){
 	return(numClasses);
@@ -74,7 +76,7 @@ void Student::dropClass(std::string className){
 }
 
 void Student::displayEnrollment(){
-	std::cout << name << " is enrolled in " << numClasses << " classes" << std::endl;
+	std::cout << Lname << ", " << Fname << " is enrolled in " << numClasses << " classes" << std::endl;
 	std::cout << "The following are the classes: " << std::endl;
 	for(int i = 0; i < numClasses; i++){
 		std::cout << ClassList[i] << std::endl;
@@ -94,7 +96,8 @@ Student& Student::operator=(const Student& rtSide){
 	}
 	else{
 		ID = rtSide.ID;
-		name = rtSide.name;
+		Lname = rtSide.Lname;
+		Fname = rtSide.Fname;
 		numClasses = rtSide.numClasses;
 		delete [] ClassList;
 		ClassList = new std::string[numClasses];
@@ -104,4 +107,8 @@ Student& Student::operator=(const Student& rtSide){
 
 		return *this;
 	}
+}
+
+Student::~Student(){
+	delete [] ClassList;
 }

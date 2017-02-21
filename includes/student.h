@@ -14,13 +14,14 @@ class Student{
 	private:
 		static int IDpool;
 		int ID = 0;	//! Defaulting to '0', if this value occurs the sensor has had some initialization issues
-		std::string name;
+		std::string Lname;
+		std::string Fname;
 		int numClasses = 0; // Number of enrolled classes
 		std::string *ClassList = nullptr;
 
 	public:
-		Student(std::string name);
-		void setName(std::string name);
+		Student(std::string Last_name, std::string First_name);
+		void setName(std::string Last_name, std::string First_name);
 		std::string getName(void);
 		int getNumClasses(void);
 		// something to list more about courses
@@ -30,6 +31,7 @@ class Student{
 		void resetClasses(void);
 		// Overload assignment operator
 		Student& operator=(const Student& rtSide);
+		~Student();
 
 
 };
