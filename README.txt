@@ -1,1 +1,1 @@
-To build this project got the src directory and run make
+To build this project go to the src directory and run make
