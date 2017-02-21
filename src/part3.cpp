@@ -19,8 +19,12 @@
 // Using a pointer to array of pointers could improve
 // system performance (particularly for deletions)
 StudentBody::StudentBody(){
-	Student *StudentList = nullptr;
+	//Student *StudentList = nullptr;
 	//StudentList = *Student;
+	//StudentList = new Student[0];
+	//Student A;
+	//StudentList = A;
+	StudentList = nullptr;
 	StudentList = new Student[0];
 	studentCount = 0;
 }
@@ -31,7 +35,7 @@ void part3(void){
 	//StudentBody = new Student[];
 	//MasterControl(StudentBody);
 	StudentBody *StudentBodPTR;
-	StudentBodPTR = new StudentBody;
+	StudentBodPTR = new StudentBody[1];
 	addNewStudent(StudentBodPTR);
 	MasterControl(StudentBodPTR);
 
@@ -50,9 +54,12 @@ void addNewStudent(StudentBody *StudentBod){
 		std::cout << "Please enter the first name of the student: ";
 		std::cin >> FirstName;
 		//StudentBod.StudentList[StudentBod.studentCount].Student(LastName, FirstName);
-		StudentBod.StudentList[StudentBod.studentCount].setName(LastName, FirstName);
+		StudentBod->StudentList[StudentBod->studentCount].setName(LastName, FirstName);
+		//StudentBod.StudentList[StudentBod.studentCount].setName(LastName, FirstName);
+		addStudentClasses(StudentBod, StudentBod->studentCount);
 		std::cout << "OK, we will now verify that the following enrollment is correct: " << std::endl;
-		StudentBod.StudentList[StudentBod.studentCount].displayEnrollment();
+		//StudentBod.StudentList[StudentBod.studentCount].displayEnrollment();
+		StudentBod->StudentList[StudentBod->studentCount].displayEnrollment();
 		std::cout << "Is this info correct? (Y/n): ";
 		std::cout << std::endl;
 		if((input == "N") || (input == "n") || (input == "NO") || (input == "No") || (input == "no")){
@@ -62,7 +69,8 @@ void addNewStudent(StudentBody *StudentBod){
 		else{
 			loop = false;
 		}
-		StudentBod.studentCount++;
+		//StudentBod.studentCount++;
+		StudentBod->studentCount++;
 	}
 }
 
@@ -72,7 +80,8 @@ void addNewStudent(StudentBody *StudentBod){
 // location of the student body to modify, all behavior
 // is managed internally
 void removeStudent(StudentBody *StudentBod){
-	if(StudentBod.studentCount == 0){
+	//if(StudentBod.studentCount == 0){
+	if(StudentBod->studentCount == 0){
 		std::cout << "You already have zero students..." << std::endl;
 	}
 	else{
@@ -83,8 +92,10 @@ void removeStudent(StudentBody *StudentBod){
 		std::cout << std::endl;
 		bool found_student = false;
 		std::string input;
-		for(int i = 0; i < StudentBod.studentCount; i++){
-			if(StudentBod.StudentList[i].getID() == studentID){
+		//for(int i = 0; i < StudentBod.studentCount; i++){
+		for(int i = 0; i < StudentBod->studentCount; i++){
+			//if(StudentBod.StudentList[i].getID() == studentID){
+			if(StudentBod->StudentList[i].getID() == studentID){
 				location = i;
 				found_student = true;
 				break;	// We found them, no need to keep looking
@@ -94,7 +105,8 @@ void removeStudent(StudentBody *StudentBod){
 		if(found_student == true){
 			std::cout << "We found a student with the ID number: " << studentID << std::endl;
 			studentName pupilName;
-			pupilName = StudentBod.StudentList[location].getName();
+			//pupilName = StudentBod.StudentList[location].getName();
+			pupilName = StudentBod->StudentList[location].getName();
 			std::cout << "Their name is: " << pupilName.Lname << ", " << pupilName.Fname << std::endl;
 			std::cout << "Is this information correct? (Y/n): ";
 			std::cin >> input;
@@ -103,15 +115,20 @@ void removeStudent(StudentBody *StudentBod){
 				std::cout << "OK, we will cancel the deletion" << std::endl;
 			}
 			else{
-				for(int j = location; j < StudentBod.studentCount; j++){
+				//for(int j = location; j < StudentBod.studentCount; j++){
+				for(int j = location; j < StudentBod->studentCount; j++){
 					// This would benefit from usig a pointer to each element instead of
 					// a pointer to the array
-					if(location < StudentBod.studentCount){
-						StudentBod.StudentList[j] = StudentBod.StudentList[j + 1];
+					//if(location < StudentBod.studentCount){
+					if(location < StudentBod->studentCount){
+						//StudentBod.StudentList[j] = StudentBod.StudentList[j + 1];
+						StudentBod->StudentList[j] = StudentBod->StudentList[j + 1];
 					}
 					else{
-						StudentBod.StudentList[j].~Student(); // We are now shrinking the total student count
-						StudentBod.studentCount--;
+						//StudentBod.StudentList[j].~Student(); // We are now shrinking the total student count
+						//StudentBod.studentCount--;
+						StudentBod->StudentList[j].~Student(); // We are now shrinking the total student count
+						StudentBod->studentCount--;
 					}
 				}
 			}
@@ -127,13 +144,16 @@ void removeStudent(StudentBody *StudentBod){
 // add later on, once the type of data to manipulate is
 // determined
 void printAllStudents(const StudentBody *StudentBod){
-	if(StudentBod.studentCount == 0){
+	//if(StudentBod.studentCount == 0){
+	if(StudentBod->studentCount == 0){
 		std::cout << "You have no students..." << std::endl;
 	}
 	else{
 		std::cout << "Listing all enrolled students and their enrollment status: " << std::endl;
-		for(int i = 0; i < StudentBod.studentCount; i++){
-			StudentBod.StudentList[i].displayEnrollment();
+		//for(int i = 0; i < StudentBod.studentCount; i++){
+		for(int i = 0; i < StudentBod->studentCount; i++){
+			//StudentBod.StudentList[i].displayEnrollment();
+			StudentBod->StudentList[i].displayEnrollment();
 			std::cout << "-------------------------------------" << std::endl;
 		}
 	}
@@ -188,7 +208,8 @@ void addStudentClasses(StudentBody *StudentBod, const int &student){
 	while(loop){
 		std::cout << "Please enter the class name: ";
 		std::cin >> input;
-		StudentBod.StudentList->addClass(input);
+		//StudentBod.StudentList->addClass(input);
+		StudentBod->StudentList->addClass(input);
 		std::cout << "Would you like to enter another class? (y/N): ";
 		std::cin >> input;
 		if((input == "y") || (input == "Y") || (input == "Yes") || (input == "YES") || (input == "yes")){

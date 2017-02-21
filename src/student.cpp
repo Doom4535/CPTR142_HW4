@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 
 int Student::IDpool = 1; // Starting ID value for the 1st sensor should be '1'
@@ -17,7 +18,10 @@ Student::Student(void){
 	ID = IDpool;
 	IDpool++;
 	numClasses = 0;
-	ClassList = new std::string;
+	ClassList = nullptr;
+	ClassList = new std::string[];
+	//ClassList;
+
 }
 
 /*
@@ -117,7 +121,8 @@ Student& Student::operator=(const Student& rtSide){
 		Name.Fname = rtSide.Name.Fname;
 		numClasses = rtSide.numClasses;
 		delete [] ClassList;
-		ClassList = new std::string[numClasses];
+		//ClassList = new std::string[numClasses];
+		//ClassList = new std::vector;
 		for(int i = 0; i < numClasses; i++){
 			ClassList[i] = rtSide.ClassList[i];
 		}

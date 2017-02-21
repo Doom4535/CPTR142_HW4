@@ -9,6 +9,7 @@
 #define STUDENT_H_
 
 #include <string>
+#include <vector>
 
 struct studentName{
 	std::string Lname;
@@ -23,7 +24,9 @@ class Student{
 		//std::string Fname;
 		studentName Name;
 		int numClasses = 0; // Number of enrolled classes
-		std::string *ClassList = nullptr;
+		std::string *ClassList;
+		//std::string ClassList;
+		//std::vector <std::string> ClassList;
 
 	public:
 		Student(void);
