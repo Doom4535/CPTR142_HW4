@@ -10,44 +10,8 @@
 
 #include "student.h"
 
-struct StudentBody{
-	Student *StudentList;
-	int studentCount;
-
-	//StudentBody(int size);
-	StudentBody(void);
-};
-
-//! General part 3 routine
 void part3(void);
 
-//! Adding in new student, console entry is managed in function,
-// therefore, only a reference to the student body is needed
-void addNewStudent(StudentBody *StudentBod);
-
-//! \brief Removing a student
-//
-// Like in addNewStudent, this function takes in the
-// location of the student body to modify, all behavior
-// is managed internally
-void removeStudent(Student *StudentBody);
-
-//! Print all currently enrolled students
-// Not sure on PTR type at this point in time.
-// Could also try using pass by reference.
-// This function only outputs to the console, another
-// that provides manipulatable data might be useful to
-// add later on, once the type of data to manipulate is
-// determined
-void printAllStudents(const StudentBody *StudentBod);
-
-//! Sort of homescreen for the program
-void MasterControl(StudentBody *StudentBody);
-
-//! enrolls the student in more classes
-void addStudentClasses(StudentBody *StudentBod, int &student);
-
-//! removes a student
-void removeStudent(StudentBody *StudentBod);
+void testroutine(void);
 
 #endif /* PART3_FUNCTIONS_H_ */

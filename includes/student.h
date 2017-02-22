@@ -36,13 +36,9 @@ class Student{
 		//Student(std::string Last_name, std::string First_name);
 		void setName(std::string Last_name, std::string First_name);
 		studentName getName(void);
-		int getNumClasses(void);
-		int getID(void);
-		// something to list more about courses
-		void addClass(std::string className);
-		void dropClass(std::string className);
-		void displayEnrollment(void);
-		void resetClasses(void);
+		void studentEnroll();
+		void studentPrint(void);
+		void courseReset(void);
 		// Overload assignment operator
 		Student& operator=(const Student& rtSide);
 		~Student();

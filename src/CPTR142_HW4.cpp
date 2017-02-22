@@ -23,6 +23,9 @@ int main(void) {
 
 	//part1();
 	//part2();
+	//part3();
+	//testroutine();
 	part3();
+
 	return EXIT_SUCCESS;
 }
